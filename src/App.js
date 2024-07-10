@@ -1,38 +1,52 @@
 // import logo from './logo.svg';
 
 
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Navbar from './Components/Navbar';
 import News from './Components/News';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
 
-export default class App extends Component {
-  name="thivi";
+const App=()=> {
 
-  render() {
+  const pageSize=5;
+  const[progress,setProgress] = useState(0)
+  // const setProgress=(progress)=>{
+  //   setProgress({progress});
+  // };
+  
+
+  
     return (
       <div>
        <BrowserRouter>
        <Navbar/>
+       <LoadingBar
+        color='#FF0000'
+        progress={progress}
+        height={7}
+        onLoaderFinished={() => setProgress(progress)}
+      />
        <Routes>
-        <Route exact path="/" element={<News key='general'  pageSize={5} country="in" category="general"/>}></Route>
-        <Route  exact path="/business" element={<News key='business' pageSize={5} country="in" category="business"/>}></Route>
-        <Route  exact path="/entertainment" element={<News key='entertainment' pageSize={5} country="in" category="entertainment"/>}></Route>
-        <Route  exact path="/health" element={<News key='health' pageSize={5} country="in" category="health"/>}></Route>
-        <Route  exact path="/science" element={<News key='science' pageSize={5} country="in" category="science"/>}></Route>
-        <Route  exact path="/sports" element={<News key='sports' pageSize={5} country="in" category="sports"/>}></Route>
-        <Route  exact path="/technology" element={<News key='technology' pageSize={5} country="in" category="technology"/>}></Route>
+        <Route exact path="/" element={<News setProgress = {setProgress}  key='general'  pageSize={6} country="in" category="general"/>}></Route>
+        <Route  exact path="/business" element={<News setProgress = {setProgress} key='business' pageSize={5} country="in" category="business"/>}></Route>
+        <Route  exact path="/entertainment" element={<News setProgress = {setProgress} key='entertainment' pageSize={5} country="in" category="entertainment"/>}></Route>
+        <Route  exact path="/health" element={<News setProgress = {setProgress} key='health' pageSize={5} country="in" category="health"/>}></Route>
+        <Route  exact path="/science" element={<News setProgress = {setProgress} key='science' pageSize={5} country="in" category="science"/>}></Route>
+        <Route  exact path="/sports" element={<News setProgress = {setProgress} key='sports' pageSize={5} country="in" category="sports"/>}></Route>
+        <Route  exact path="/technology" element={<News setProgress = {setProgress} key='technology' pageSize={5} country="in" category="technology"/>}></Route>
        </Routes>
        </BrowserRouter>
 
 
       {/*<Navbar/>*/}
-      {/* <News pageSize={5} country="in" category="general"/> */}
+      {/* <News setProgress = {setProgress} pageSize={5} country="in" category="general"/> */}
       </div>
     );
-  }
 }
+
+export default App;
 
 
 

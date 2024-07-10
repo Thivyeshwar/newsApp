@@ -22,7 +22,7 @@ const NewsItem=(props)=> {
     <a href={newsUrl} 
    rel="noreferrer"
     target="_blank"
-    className="btn btn-sm btn-primary">
+      className="btn btn-sm btn-primary">
       Read More</a>
   </div>
 </div>
